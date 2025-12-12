@@ -1,6 +1,6 @@
 ## Hi there 👋
 
-This is my repository! Test
+This is my repository!
 
 <!--
 **gabriella-turrinelli/gabriella-turrinelli** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
