@@ -2,6 +2,9 @@
 
 This is my repository!
 
+**Author:** Gabriella Turrinelli
+**Last Updated:** 12/12/2025
+
 <!--
 **gabriella-turrinelli/gabriella-turrinelli** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
