@@ -10,7 +10,7 @@ This is my repository!
 
 A plot I made for confidence intervals compared to a true outcome:
 
-![Figure of a Confidence Interval](gh figs/problem_set_3.png)
+![Figure of a Confidence Interval](gh_figs/problem_set_3.png)
 
 <!--
 **gabriella-turrinelli/gabriella-turrinelli** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
