@@ -4,13 +4,7 @@ This is my repository!
 
 **Author:** Gabriella Turrinelli
 
-**Last Updated:** 12/12/2025
-
-## Confidence Interval Graph
-
-A plot I made for confidence intervals compared to a true outcome:
-
-![Figure of a Confidence Interval](gh_figs/problem_set_3.png)
+**Last Updated:** 10/2/2026
 
 <!--
 **gabriella-turrinelli/gabriella-turrinelli** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
