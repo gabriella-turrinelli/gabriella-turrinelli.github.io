@@ -228,6 +228,43 @@
 
     </script>
 
+    <section>
+        <div class="chart-description">
+            <h2> CC4: Chart Replication</h2>
+            <p> <!-- This is a paragraph, it's the main way to display text on a web page -->
+                Below I reproduce and then improve a chart from the Financial Times
+            </p>
+        </div>
+
+        <!-- This element will contain our vega-lite chart -->
+        <img src="https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/portfolio_graphs/ft_ai_graph.jpg"
+            alt="Financial Times line chart showing AI-generated articles overtaking human-written articles from 2020 to 2025"
+            style="max-width: 100%; height: auto;">
+        <figcaption>Original chart from the Financial Times. Source: Graphite</figcaption>
+        </figure>
+        <figure id="Location8"></figure> <!-- we give it an id so we can put a vega-lite graph here with VegaEmbed -->
+        <figcaption>This is my graph recreation.</figcaption>
+        <figure id="Location9"></figure>
+        <p> <!-- This is a paragraph, it's the main way to display text on a web page -->
+                I removed the “Human” line as the two lines added to 100% and made the introduction of ChatGPT clearer and added more AI introduction points.
+        </p>
+    </section>
+
+    <script>
+        // This is a comment in JavaScript - it's a different language to HTML and CSS
+
+        let figure_8_spec = "https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/portfolio_graphs/ft_recreation.json"; // We're storing the URL of the graph we want to display in a variable
+        // You should have a spec for a graph in this same folder. Just specify its name here, e.g. let figure_1_spec = "chart1.json"
+
+        vegaEmbed('#Location8', figure_8_spec) // We're using the vegaEmbed function to put a graph in the element with id figure_1
+        
+        let figure_9_spec = "https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/portfolio_graphs/cc4_improvement.json"; // We're storing the URL of the graph we want to display in a variable
+        // You should have a spec for a graph in this same folder. Just specify its name here, e.g. let figure_1_spec = "chart1.json"
+
+        vegaEmbed('#Location9', figure_9_spec) // We're using the vegaEmbed function to put a graph in the element with id figure_1
+
+    </script>
+
 </body>
     
 </html>
