@@ -1,0 +1,142 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "AI-Written Content ",
+  "config": {
+    "background": "#FFF1E5",
+    "font": "Metric, Inter, Helvetica, Arial, sans-serif",
+    "view": {"stroke": null},
+    "padding": {"left": 20, "right": 20, "top": 20, "bottom": 20},
+    "title": {
+      "font": "Metric, Inter, Helvetica, Arial, sans-serif",
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color": "#33302E",
+      "subtitleFont": "Metric, Inter, Helvetica, Arial, sans-serif",
+      "subtitleFontSize": 17,
+      "subtitleColor": "#66605C"
+    },
+    "axis": {
+      "labelFontSize": 15,
+      "labelColor": "#66605C",
+      "gridColor": "#E6D9CE",
+      "gridWidth": 1
+    },
+    "legend": {"labelFontSize": 15, "labelColor": "#66605C"}
+  },
+  "layer": [
+    {
+      "data": {
+        "values": [
+          {"date": "2022-07-20", "y": 46, "o": 0},
+          {"date": "2022-10-01", "y": 40, "o": 1},
+          {"date": "2022-11-15", "y": 25, "o": 2},
+          {"date": "2022-11-30", "y": 10.5, "o": 3}
+        ]
+      },
+      "mark": {
+        "type": "line",
+        "interpolate": "monotone",
+        "color": "#000",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {"field": "date", "type": "temporal"},
+        "y": {"field": "y", "type": "quantitative"},
+        "order": {"field": "o"}
+      }
+    },
+    {
+      "data": {
+        "values": [{"date": "2021-07-15", "y": 46, "t": "ChatGPT launched"}]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "fontSize": 15,
+        "color": "#000",
+        "font": "Metric, Inter, Helvetica, Arial, sans-serif"
+      },
+      "encoding": {
+        "x": {"field": "date", "type": "temporal"},
+        "y": {"field": "y", "type": "quantitative"},
+        "text": {"field": "t"}
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/portfolio_data/ft_ai_data.csv"
+      },
+      "transform": [{"fold": ["Human", "AI"], "as": ["writer", "portion"]}],
+      "mark": {"type": "line", "strokeWidth": 3.5},
+      "title": {
+        "text": "AI-generated content has surpassed human-written articles",
+        "subtitle": "Proportion of articles published on the web (%)",
+        "anchor": "start",
+        "offset": 14,
+        "subtitlePadding": 8
+      },
+      "height": 420,
+      "width": 700,
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal",
+          "axis": {
+            "title": null,
+            "format": "%Y",
+            "formatType": "time",
+            "tickCount": {"interval": "year", "step": 1},
+            "labelAlign": "center",
+            "labelOffset": 4,
+            "labelFontSize": 15,
+            "labelColor": "#6e6560",
+            "labelPadding": 6,
+            "domain": true,
+            "domainColor": "#B3A99F",
+            "domainWidth": 1.5,
+            "ticks": true,
+            "tickColor": "#B3A99F",
+            "tickSize": 8,
+            "tickWidth": 1,
+            "grid": false,
+            "labelFont": "Metric, Inter, Helvetica, Arial, sans-serif"
+          }
+        },
+        "y": {
+          "field": "portion",
+          "type": "quantitative",
+          "title": "",
+          "scale": {"domain": [0, 100]},
+          "axis": {
+            "title": null,
+            "values": [0, 20, 40, 60, 80, 100],
+            "domain": false,
+            "ticks": false,
+            "grid": true,
+            "labelPadding": 8,
+            "labelFont": "Metric, Inter, Helvetica, Arial, sans-serif"
+          }
+        },
+        "color": {
+          "field": "writer",
+          "type": "nominal",
+          "title": "",
+          "scale": {"range": ["#db728b", "#2a549a"]},
+          "legend": {
+            "title": null,
+            "orient": "none",
+            "legendX": -40,
+            "legendY": -34,
+            "direction": "horizontal",
+            "values": ["Human", "AI"],
+            "symbolType": "stroke",
+            "symbolStrokeWidth": 4,
+            "symbolSize": 300,
+            "columnPadding": 10
+          }
+        }
+      }
+    }
+  ]
+}
