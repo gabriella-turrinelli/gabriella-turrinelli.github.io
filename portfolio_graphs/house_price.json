@@ -1,0 +1,29 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Housing Affordability in the U.S.",
+  "data": {
+    "url": "https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/portfolio_data/MSPUS.csv",
+    "format": {"property": "[1]"}
+  },
+  "mark": "line",
+  "title": {
+    "text": "Housing Affordability in the U.S.",
+    "subtitle": "Median Sales Price of New Houses Sold for the United States over Time"
+  },
+  "height": 300,
+  "width": 500,
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "temporal",
+      "title": "",
+      "axis": {"grid": false}
+    },
+    "y": {
+      "field": "value",
+      "type": "quantitative",
+      "title": "Sales Price (USD)"
+    }
+  },
+  "config": {}
+}

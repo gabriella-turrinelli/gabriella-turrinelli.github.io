@@ -1,0 +1,35 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Food Affordability in the U.S.",
+  "data": {
+    "url": "https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/portfolio_data/food_prices.csv"
+  },
+  "transform": [{"fold": ["Eggs", "Milk", "Bread"], "as": ["item", "price"]}],
+  "mark": {"type": "line", "invalid": "break-paths-filter-domains"},
+  "title": {
+    "text": "Grocery Affordability in the U.S.",
+    "subtitle": "Average Prices for Staple Goods"
+  },
+  "height": 300,
+  "width": 500,
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "temporal",
+      "title": "",
+      "axis": {"grid": false}
+    },
+    "y": {
+      "field": "price",
+      "type": "quantitative",
+      "title": "Average Price (USD)"
+    },
+    "color": {
+      "field": "item",
+      "type": "nominal",
+      "title": "",
+      "scale": {"scheme": "paired"}
+    }
+  },
+  "config": {}
+}
