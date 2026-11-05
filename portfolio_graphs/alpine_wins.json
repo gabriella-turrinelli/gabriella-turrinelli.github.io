@@ -1,0 +1,36 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/portfolio_data/alpine_wins_by_nation.csv"
+  },
+  "mark": "bar",
+  "title": {
+    "text": "Which countries are the best at alpine skiing?",
+    "subtitle": [
+      "Total FIS Alpine Ski World Cup race wins by nation, men and women combined.",
+      "Source: Wikipedia, FIS Alpine Ski World Cup"
+    ],
+    "anchor": "center",
+    "fontSize": 18,
+    "subtitleColor": "gray",
+    "subtitleFontSize": 12
+  },
+  "width": 500,
+  "height": 400,
+  "encoding": {
+    "x": {
+      "aggregate": "sum",
+      "field": "value",
+      "type": "quantitative",
+      "title": "Alpine World Cup wins"
+    },
+    "y": {"field": "Nation", "type": "nominal", "sort": "-x", "title": ""},
+    "color": {
+      "field": "Gender",
+      "type": "nominal",
+      "title": "",
+      "scale": {"domain": ["Men", "Women"], "range": ["#1f4e9c", "#99ccff"]}
+    }
+  },
+  "config": {}
+}
