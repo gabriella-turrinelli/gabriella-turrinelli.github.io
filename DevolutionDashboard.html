@@ -42,14 +42,16 @@
                 "format": {"type": "json", "property": "observations"}   // FRED puts the data inside "observations"
             },
             "transform": [
-                {"filter": "year(datum.date) >= 2000"}       // a conditional: keep only 2000 onwards
+                {"calculate": "datum.time.value", "as": "year"},
+                {"calculate": "datum.geography.description", "as": "region"},
+                {"calculate": "datum.obs_value.value", "as": "gdhi"}
             ],
             "width": 200,
             "height": 150,
             "mark": {"type": "line", "color": "#58b3c7"},
             "encoding": {
-                "x": {"field": "date", "type": "temporal", "title": null, "axis": {"grid": false}},
-                "y": {"field": "value", "type": "quantitative", "title": null}
+                "x": {"field": "year", "type": "temporal", "title": null, "axis": {"grid": false}},
+                "y": {"field": "gdhi", "type": "quantitative", "title": null}
             }
         };
 
@@ -74,7 +76,7 @@
 
             // Fill in the data link and the title. `${ }` puts a value into text, like an f-string in Python.
             spec.data.url = `${baseUrl}/data_UK_NOMIS-GDHI-${seriesCodes[i]}.json`;
-            spec.title.text = seriesCodes[i];
+            spec.title.text = str(seriesCodes[i]).replace('_', ' ');
 
             console.log(spec.data.url);   // print the link (open the browser console to check it)
 
