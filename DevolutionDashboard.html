@@ -39,13 +39,13 @@
             "view": {"stroke": "transparent"},
             "data": {
                 "url": "",                                   // filled in by the loop
-                "format": {"type": "json", "property": "observations"}   // FRED puts the data inside "observations"
+                "format": {"type": "json", "property": "obs"}   // FRED puts the data inside "observations"
             },
             "transform": [
-                {"calculate": "datum.time.value", "as": "year"},
+                {"calculate": "datetime(datum.time.value, 0, 1)", "as": "year"},
                 {"calculate": "datum.geography.description", "as": "region"},
                 {"calculate": "datum.obs_value.value", "as": "gdhi"}
-            ],
+            ],,
             "width": 200,
             "height": 150,
             "mark": {"type": "line", "color": "#58b3c7"},
