@@ -1,34 +1,43 @@
 <!DOCTYPE html>
-<html>
-
-<!-- Richard Davies, Data Science -->
-
-<!-- CODING LESSON NUMBER 1 -->
-<!-- Commenting your code is vital, vital, vital -->
-
-<!-- This is how you add comments to HTML -->
-
-<!-- You can also include
-multi - line comments
-if you find that useful -->
-
-<!-- To turn text into a comment, use the=is short-cut: CTRL & the "/" key (command + "/" on Mac)-->
-
-
-<!-- HOW HTML WORKS - THE BASICS -->
-<!-- HTML files have two fundamental parts. (1) The head, (2) The body -->
-
-<!-- The head contains things that you do not see on the page -->
-
+<html lang="en">
 <head>
-    <title>Page Title</title>
-</head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- The body contains thigs you see -->
-<!-- Most elements both open and close, with the content in the middle -->
-<!-- Indenting is optional, but helps with readability -->
+  <title>Gabriella Turrinelli</title>
+  <meta name="description" content="Gabriella Turrinelli: portfolio and projects.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
 <body>
-    <h1>My First Heading</h1>
-    <p>My first paragraph.</p>
+
+  <!-- Banner: copy this block into portfolio.html and project.html too.
+       Move aria-current="page" to the link for whichever page you're on. -->
+  <header class="banner">
+    <nav aria-label="Main">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="project.html">Project</a>
+      <a href="portfolio.html">Portfolio</a>
+    </nav>
+  </header>
+
+  <main class="intro">
+    <!-- Optional photo: uncomment and point it at your image -->
+    <!-- <img class="profile-photo" src="images/profile.jpg" alt="Gabriella Turrinelli"> -->
+
+    <h1>Gabriella Turrinelli</h1>
+
+    <!-- EDIT: put your real email and LinkedIn URL here -->
+    <ul class="links">
+      <li><a href="mailto:you@example.com">Email</a></li>
+      <li><a href="https://www.linkedin.com/in/your-linkedin-name/">LinkedIn</a></li>
+      <li><a href="https://github.com/gabriella-turrinelli">GitHub</a></li>
+    </ul>
+  </main>
+
 </body>
 </html>
