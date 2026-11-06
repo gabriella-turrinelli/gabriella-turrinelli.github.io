@@ -18,7 +18,10 @@
     <div class="wrap">
         <h1>CC6: <span style="color: #86d0bb">Devolution Dashboard</span></h1>
         <p class="rubric">A dashboard of six charts, made with one loop. Data: NOMIS (downloaded with https://colab.research.google.com/drive/1GS9TvCA7FioGSPueEPrBtyKxxCHtIMeH?usp=sharing).</p>
-        <p id="message"></p>
+        <p id="message">
+            These charts use regional gross disposable household income data from NOMIS, via the Office of National Statistics.
+            The data is downloaded using the following notebook: https://colab.research.google.com/drive/1GS9TvCA7FioGSPueEPrBtyKxxCHtIMeH?usp=sharing.
+        </p>
     </div>
 
     <!-- Six empty places for charts, with ids c1 to c6 -->
@@ -39,7 +42,7 @@
             "view": {"stroke": "transparent"},
             "data": {
                 "url": "",                                   // filled in by the loop
-                "format": {"type": "json", "property": "obs"}   // FRED puts the data inside "observations"
+                "format": {"type": "json", "property": "obs"}   
             },
             "transform": [
                 {"calculate": "datetime(datum.time.value, 0, 1)", "as": "year"},
