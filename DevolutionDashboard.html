@@ -58,10 +58,11 @@
         // 2. THE LIST TO LOOP OVER: one series code per chart
         //    Use the same codes as your list in DS5_2, e.g. ["UNRATE", "CPIAUCSL", ...]
         let seriesCodes = ['North_East', 'North_West', 'London', 'Wales', 'Scotland', 'Northern_Ireland'];
+        let seriesNames = ['North East', 'North West', 'London', 'Wales', 'Scotland', 'Northern Ireland'];
 
         // 3. WHERE THE DATA FILES ARE: the "data" folder next to this HTML file (ending in /).
         //    You could also use a full link, e.g. the raw GitHub link to a data folder.
-        let baseUrl = "portfolio_data/";
+        let baseUrl = "https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/portfolio_data/";
 
         // A conditional: if the list is still empty, show a reminder on the page
         if (seriesCodes.length === 0) {
@@ -75,8 +76,8 @@
             let spec = structuredClone(templateSpec);
 
             // Fill in the data link and the title. `${ }` puts a value into text, like an f-string in Python.
-            spec.data.url = `${baseUrl}/data_UK_NOMIS-GDHI-${seriesCodes[i]}.json`;
-            spec.title.text = str(seriesCodes[i]).replace('_', ' ');
+            spec.data.url = `${baseUrl}data_UK_NOMIS-GDHI-${seriesCodes[i]}.json`;
+            spec.title.text = seriesNames[i];
 
             console.log(spec.data.url);   // print the link (open the browser console to check it)
 
