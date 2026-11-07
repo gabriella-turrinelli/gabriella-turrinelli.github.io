@@ -6,14 +6,13 @@
 <head>    
     
     <link rel="stylesheet" type="text/css" href="portfolio.css">
-    <title>My Portfolio</title> 
+    <title>My Portfolio </title> 
 
     <script src="https://cdn.jsdelivr.net/npm/vega@6.4.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@6.4.3"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@7.3.0"></script>
 
     <style>
-        /* CSS styles can be defined here, or in a separate CSS file */
         #chartGrid {
             display: flex;
         }
@@ -39,100 +38,48 @@
 
     <section>
         <div class="chart-description">
-            <h2>Section 1: A basic chart</h2>
-            <p> <!-- This is a paragraph, it's the main way to display text on a web page -->
-                We've organised the page into sections, with each section containing a chart, title and a description. Here, we can describe the chart and give some context.
-                As a first example, we're using a basic chart from our repo.
+            <h2>CC1: Two basic charts</h2>
+            <p> 
+                Two basic charts from the Economics Observatory and Richard Davies' library for the first coding task.
             </p>
         </div>
-
-        <!-- This element will contain our vega-lite chart -->
-        <figure id="Location1"></figure> <!-- we give it an id so we can put a vega-lite graph here with VegaEmbed -->
+        
+        <figure id="Location1"></figure>
+        <figure id="Location2"></figure> 
 
     </section>
 
     
     <script>
-        // This is a comment in JavaScript - it's a different language to HTML and CSS
 
-        let figure_1_spec = "https://raw.githubusercontent.com/EconomicsObservatory/courses/main/2/s2_chart2.json"; // We're storing the URL of the graph we want to display in a variable
-        // You should have a spec for a graph in this same folder. Just specify its name here, e.g. let figure_1_spec = "chart1.json"
+        let figure_1_spec = "https://raw.githubusercontent.com/EconomicsObservatory/courses/main/2/s2_chart2.json"; 
+        vegaEmbed('#Location1', figure_1_spec) 
 
-        vegaEmbed('#Location1', figure_1_spec) // We're using the vegaEmbed function to put a graph in the element with id figure_1
-
-
-    </script>
-
- <section>
-        <div class="chart-description">
-            <h2>Section 2: A second basic chart</h2>
-            <p> <!-- This is a paragraph, it's the main way to display text on a web page -->
-                This is a second chart, pulled from Richard Davies' library.
-            </p>
-        </div>
-
-        <!-- This element will contain our vega-lite chart -->
-        <figure id="Location2"></figure> <!-- we give it an id so we can put a vega-lite graph here with VegaEmbed -->
-
-    </section>
-
-    <!-- Do you want to add more sections? -->
-        <!-- Try copying pasting the section above -->
-        <!-- You'll need to change the id of the figure "<figure id="Location2"... -->
-        <!-- ... and add a new variable for the graph spec in the script at the bottom of the page -->
-
-
-    <!-- This is a script, it's a way to run JavaScript code on the page -->
-    <script>
-        // This is a comment in JavaScript - it's a different language to HTML and CSS
-
-        let figure_2_spec = "https://raw.githubusercontent.com/RDeconomist/RDeconomist.github.io/refs/heads/main/charts/football/chartFootball4.json"; // We're storing the URL of the graph we want to display in a variable
-        // You should have a spec for a graph in this same folder. Just specify its name here, e.g. let figure_1_spec = "chart1.json"
-
-        vegaEmbed('#Location2', figure_2_spec) // We're using the vegaEmbed function to put a graph in the element with id figure_1
-        
-        // Do you want to add more graphs?
-        // try defining a new variable for figure_2_spec, adding VegaEmbed for Location2, and adding a new section in the HTML
-        // e.g. 
-        // let figure_2_spec = ...
-        // vegaEmbed('#Location2', figure_2_spec)
-
+        let figure_2_spec = "https://raw.githubusercontent.com/RDeconomist/RDeconomist.github.io/refs/heads/main/charts/football/chartFootball4.json"; 
+        vegaEmbed('#Location2', figure_2_spec) 
 
     </script>
 
     <section>
         <div class="chart-description">
-            <h2>Section 3: Two Charts from the Economics Observatory</h2>
-            <p> <!-- This is a paragraph, it's the main way to display text on a web page -->
+            <h2>CC2: Two Charts from the Economics Observatory</h2>
+            <p> 
                 This section provides two graphs created on the economics observatory website. The first graph shows UK public sector debt over time. The second shows public sector debt in the United States.
             </p>
         </div>
 
-        <!-- This element will contain our vega-lite chart -->
-        <figure id="Location3"></figure> <!-- we give it an id so we can put a vega-lite graph here with VegaEmbed -->
-        <figure id="Location4"></figure> <!-- we give it an id so we can put a vega-lite graph here with VegaEmbed -->
+        <figure id="Location3"></figure> 
+        <figure id="Location4"></figure> 
 
     </section>
 
-    <!-- Do you want to add more sections? -->
-        <!-- Try copying pasting the section above -->
-        <!-- You'll need to change the id of the figure "<figure id="Location2"... -->
-        <!-- ... and add a new variable for the graph spec in the script at the bottom of the page -->
-
-
-    <!-- This is a script, it's a way to run JavaScript code on the page -->
     <script>
-        // This is a comment in JavaScript - it's a different language to HTML and CSS
-
-        let figure_3_spec = "https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/wk1_chart3.json"; // We're storing the URL of the graph we want to display in a variable
-        // You should have a spec for a graph in this same folder. Just specify its name here, e.g. let figure_1_spec = "chart1.json"
-
-        vegaEmbed('#Location3', figure_3_spec) // We're using the vegaEmbed function to put a graph in the element with id figure_1
         
-        let figure_4_spec = "https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/wk1_chart4.json"; // We're storing the URL of the graph we want to display in a variable
-        // You should have a spec for a graph in this same folder. Just specify its name here, e.g. let figure_1_spec = "chart1.json"
-
-        vegaEmbed('#Location4', figure_4_spec) // We're using the vegaEmbed function to put a graph in the element with id figure_1
+        let figure_3_spec = "https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/wk1_chart3.json"; 
+         vegaEmbed('#Location3', figure_3_spec) 
+        
+        let figure_4_spec = "https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/wk1_chart4.json"; 
+        vegaEmbed('#Location4', figure_4_spec) 
 
 
     </script>
@@ -140,34 +87,29 @@
     <section>
         <div class="chart-description">
             <h2> CC3: Policy Debate</h2>
-            <p> <!-- This is a paragraph, it's the main way to display text on a web page -->
+            <p> 
                 With U.S. midterm elections coming up, the cost of living crisis and issue of affordability continues to serve as a key policy debate.
             </p>
         </div>
 
-        <!-- This element will contain our vega-lite chart -->
-        <figure id="Location5"></figure> <!-- we give it an id so we can put a vega-lite graph here with VegaEmbed -->
-        <p> <!-- This is a paragraph, it's the main way to display text on a web page -->
+        
+        <figure id="Location5"></figure> 
+        <p> 
                 Average home prices have remained near $400,000 since 2022. Though steady since Trump took office, they remain high and signal ongoing affordability problems.
         </p>
-        <figure id="Location6"></figure> <!-- we give it an id so we can put a vega-lite graph here with VegaEmbed -->
-        <p> <!-- This is a paragraph, it's the main way to display text on a web page -->
+        <figure id="Location6"></figure> 
+        <p> 
                 Milk and bread prices remain stable, while egg prices spiked in March 2025 before leveling off. This indicates persistent affordability issues despite Trump’s campaign promises.
         </p>
     </section>
 
     <script>
-        // This is a comment in JavaScript - it's a different language to HTML and CSS
-
-        let figure_5_spec = "https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/portfolio_graphs/house_price.json"; // We're storing the URL of the graph we want to display in a variable
-        // You should have a spec for a graph in this same folder. Just specify its name here, e.g. let figure_1_spec = "chart1.json"
-
-        vegaEmbed('#Location5', figure_5_spec) // We're using the vegaEmbed function to put a graph in the element with id figure_1
         
-        let figure_6_spec = "https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/portfolio_graphs/food_price.json"; // We're storing the URL of the graph we want to display in a variable
-        // You should have a spec for a graph in this same folder. Just specify its name here, e.g. let figure_1_spec = "chart1.json"
-
-        vegaEmbed('#Location6', figure_6_spec) // We're using the vegaEmbed function to put a graph in the element with id figure_1
+        let figure_5_spec = "https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/portfolio_graphs/house_price.json";
+        vegaEmbed('#Location5', figure_5_spec) 
+        
+        let figure_6_spec = "https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/portfolio_graphs/food_price.json"; 
+         vegaEmbed('#Location6', figure_6_spec) 
 
 
     </script>
@@ -175,43 +117,38 @@
     <section>
         <div class="chart-description">
             <h2> CC4: Chart Replication</h2>
-            <p> <!-- This is a paragraph, it's the main way to display text on a web page -->
+            <p> 
                 Below I reproduce and then improve a chart from the Financial Times. 
                 The chart originally appears in an article titled "Taming the four horsemen of the infocalypse," which was published on 27 November 2025.
             </p>
         </div>
 
-        <!-- This element will contain our vega-lite chart -->
+        
         <figure>
             <img src="https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/portfolio_graphs/ft_ai_graph.jpg"
                 alt="Financial Times line chart showing AI-generated articles overtaking human-written articles from 2020 to 2025"
                 style="max-width: 100%; height: auto;">
             <figcaption>Above is the original chart from the Financial Times. Data Source: Graphite</figcaption>
         </figure>
-        <figure id="Location7"></figure> <!-- we give it an id so we can put a vega-lite graph here with VegaEmbed -->
+        <figure id="Location7"></figure> 
         <p>
             I then recreated the graph by generating a dataset using the original data from Graphite.
             One important thing that I noticed about this graph is that it contradicts the data to ink ratio concept described by Tufte. 
             The lines both add to 100%, so there appears to be superfluous ink and colors that do not assist in telling the story of the data.
         </p>
         <figure id="Location8"></figure>
-        <p> <!-- This is a paragraph, it's the main way to display text on a web page -->
+        <p> 
             I removed the “Human” line as the two lines added to 100%, made the introduction of ChatGPT clearer, and adjusted the title and subtitle.
         </p>
     </section>
 
     <script>
-        // This is a comment in JavaScript - it's a different language to HTML and CSS
 
-        let figure_7_spec = "https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/portfolio_graphs/ft_recreation.json"; // We're storing the URL of the graph we want to display in a variable
-        // You should have a spec for a graph in this same folder. Just specify its name here, e.g. let figure_1_spec = "chart1.json"
-
-        vegaEmbed('#Location7', figure_7_spec) // We're using the vegaEmbed function to put a graph in the element with id figure_1
+        let figure_7_spec = "https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/portfolio_graphs/ft_recreation.json";
+        vegaEmbed('#Location7', figure_7_spec)
         
-        let figure_8_spec = "https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/portfolio_graphs/cc4_improvement.json"; // We're storing the URL of the graph we want to display in a variable
-        // You should have a spec for a graph in this same folder. Just specify its name here, e.g. let figure_1_spec = "chart1.json"
-
-        vegaEmbed('#Location8', figure_8_spec) // We're using the vegaEmbed function to put a graph in the element with id figure_1
+        let figure_8_spec = "https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/portfolio_graphs/cc4_improvement.json"; 
+        vegaEmbed('#Location8', figure_8_spec)
 
     </script>
 
@@ -223,8 +160,7 @@
             </p>
         </div>
 
-        <!-- This element will contain our vega-lite chart -->
-        <figure id="Location9"></figure> <!-- we give it an id so we can put a vega-lite graph here with VegaEmbed -->
+        <figure id="Location9"></figure> 
         <p>
             The above chart is created using API. The base URL is https://api.worldbank.org/v2. The elements that are needed are the country or countries (country/gbr;eu), 
             the indicator (indicator/NE.EXP.GNFS.ZS), the format (format=json), and the number of observations per page (per_page=1000). 
