@@ -1,133 +1,277 @@
+/* ==========================================================
+   Dashboard stylesheet, restyled to match the homepage and
+   portfolio: cream background, Playfair Display headings,
+   Inter body text, sticky banner, cream cards.
+   ========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap');
+
 :root {
-            --bg: #f7f8fa;
-            --card-bg: #ffffff;
-            --text: #111111;
-            --muted: #6b7280;
-            --primary: #267a64; /* matches eco green-ish */
-            --primary-600: #1f6956;
-            --border: #e5e7eb;
-            --shadow: 0 1px 2px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.06);
-            --radius: 12px;
-        }
+    --bg: #fef7f4;
+    --card-bg: #f6efec;
+    --card-border: #d9cdc8;
+    --text: #111827;
+    --muted: #4b5563;
+    --primary: #267a64;
+    --primary-600: #1f6956;
+    --border: #e5e7eb;
+    --accent: #2563eb;
+    --banner-bg: rgba(254, 247, 244, 0.75);
+    --radius: 8px;
+    --shadow: none;
 
-        html, body {
-            background: var(--bg);
-            color: var(--text);
-        }
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
 
-        body {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 24px 20px 48px;
-            line-height: 1.45;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
+    --page-max: 1280px;
+    --page-pad: 2rem;
+    --content-width: 64rem;
+}
 
-        h1 {
-            font-size: 28px;
-            margin: 0;
-        }
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
 
-        .wrap p#rubric {
-            color: var(--muted);
-            margin: 6px 0 0 0;
-        }
+html {
+    background: var(--bg);
+    scroll-padding-top: 4rem; /* keeps anchor links clear of the sticky banner */
+}
 
-        /* Controls layout */
-        .controls {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 16px;
-            margin: 16px 0 20px 0;
-        }
+body {
+    margin: 0;
+    padding: 0 0 4rem;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+}
 
-        .control-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 16px;
-        }
+/* ---------- Banner: slim sticky bar with a "Return to Portfolio" button ---------- */
 
-        .control-card p {
-            margin: 0 0 8px 0;
-            font-weight: 600;
-        }
+.banner {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    background-color: var(--banner-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+}
 
-        /* Inputs */
-        .countryInput {
-            margin-right: 8px;
-            margin-bottom: 8px;
-            height: 40px;
-            width: 100px;
-            padding: 0 12px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            background: #fff;
-            font-size: 14px;
-            outline: none;
-            transition: border-color 120ms ease, box-shadow 120ms ease;
-        }
-        .countryInput:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(38,122,100,0.15);
-        }
+.banner nav {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: 0.65rem var(--page-pad);
+    display: flex;
+}
 
-        select#seriesSelect {
-            height: 40px;
-            padding: 0 12px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            background: #fff;
-            font-size: 14px;
-            outline: none;
-        }
-        select#seriesSelect:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(38,122,100,0.15);
-        }
+/* ---------- Pill button (same as the homepage links) ---------- */
 
-        /* Buttons */
-        .btn {
-            appearance: none;
-            border: 0;
-            border-radius: 10px;
-            padding: 10px 14px;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-        }
+.button {
+    display: inline-block;
+    padding: 0.5rem 1.15rem;
+    border: 1px solid var(--muted);
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--text);
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
 
-        #addCountryButton {
-            background: #eef6f3;
-            color: var(--primary);
-            border: 1px solid #d7efe7;
-        }
-        #addCountryButton:hover { filter: brightness(0.98); }
+.button:hover {
+    background-color: var(--text);
+    border-color: var(--text);
+    color: var(--bg);
+}
 
-        #runButton {
-            background: var(--primary);
-            color: #fff;
-        }
-        #runButton:hover { background: var(--primary-600); }
+a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
 
-        /* Charts grid */
-        #charts {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 16px;
-            margin-top: 16px;
-        }
+/* ---------- Page column ----------
+   Everything directly inside <body> except the banner and scripts
+   sits in one centered column. */
 
-        /* Individual chart card */
-        .chart {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 12px;
-        }
+body > :not(.banner):not(script):not(style) {
+    width: min(var(--content-width), 100% - 2rem);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Space between the banner and the page heading */
+body > .banner + * {
+    margin-top: 2.5rem;
+}
+
+/* ---------- Heading and intro text ---------- */
+
+h1 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--text);
+}
+
+/* The coloured part of the heading. The HTML sets a pale inline colour
+   (#86d0bb) that is hard to read on cream, so this overrides it. */
+h1 span {
+    color: var(--primary) !important;
+}
+
+.rubric {
+    margin: 0.75rem 0 0;
+    max-width: 42rem;
+    font-size: 1.125rem;
+    color: var(--muted);
+}
+
+#message {
+    margin: 0.75rem 0 0;
+    max-width: 42rem;
+    color: var(--muted);
+    overflow-wrap: anywhere; /* long URLs wrap instead of overflowing */
+}
+
+/* ---------- Controls (kept for dashboards that use them) ---------- */
+
+.controls {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin: 16px 0 20px 0;
+}
+
+.control-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 16px;
+}
+
+.control-card p {
+    margin: 0 0 8px 0;
+    font-weight: 600;
+}
+
+.countryInput {
+    margin-right: 8px;
+    margin-bottom: 8px;
+    height: 40px;
+    width: 100px;
+    padding: 0 12px;
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    background: #fff;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+.countryInput:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(38, 122, 100, 0.15);
+}
+
+select#seriesSelect {
+    height: 40px;
+    padding: 0 12px;
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    background: #fff;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+}
+select#seriesSelect:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(38, 122, 100, 0.15);
+}
+
+.btn {
+    appearance: none;
+    border: 0;
+    border-radius: 999px;
+    padding: 10px 16px;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#addCountryButton {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--muted);
+}
+#addCountryButton:hover {
+    background: var(--text);
+    color: var(--bg);
+}
+
+#runButton {
+    background: var(--text);
+    color: var(--bg);
+}
+#runButton:hover {
+    background: var(--primary-600);
+}
+
+/* ---------- Charts: 3 columns x 2 rows on wide screens ---------- */
+
+#charts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* Individual chart card */
+.chart {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 1rem;
+    text-align: center;
+    overflow-x: auto; /* a wide chart scrolls inside its own card */
+}
+
 /* Figures have default side margins in browsers, which push the charts out of their cards */
 figure.chart {
     margin: 0;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 899px) {
+    #charts {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 599px) {
+    :root {
+        --page-pad: 1rem;
+    }
+
+    #charts {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
 }

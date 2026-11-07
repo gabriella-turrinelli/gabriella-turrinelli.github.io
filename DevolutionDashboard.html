@@ -15,8 +15,14 @@
 </head>
 
 <body>
+    <header class="banner">
+     <nav aria-label="Main">
+       <a class="button" href="portfolio.html">&larr; Return to Portfolio</a>
+     </nav>
+   </header>
+
     <div class="wrap">
-        <h1>CC6: <span style="color: #86d0bb">Devolution Dashboard</span></h1>
+        <h1>CC6: <span>Devolution Dashboard</span></h1>
         <p class="rubric">A dashboard of six charts, using loops to show difference in income growth over time across regions in the UK.</p>
         <p id="message">
             These charts use regional gross disposable household income data from NOMIS, via the Office of National Statistics.
@@ -38,8 +44,10 @@
         // 1. A TEMPLATE CHART: everything is the same for every chart, except the data link and title (left empty)
         let templateSpec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+            "background": "transparent",
             "title": {"text": "", "anchor": "start"},
             "view": {"stroke": "transparent"},
+            "config": {"font": "Inter"},
             "data": {
                 "url": "",                                   // filled in by the loop
                 "format": {"type": "json", "property": "obs"}   
