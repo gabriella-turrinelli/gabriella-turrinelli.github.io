@@ -1,67 +1,249 @@
-/* This is an example CSS file. If you include it in your portfolio, it'll provide some clean and basic styling */
-/* for your page. Feel free to experiment with the values, or copy them into a new file and use that instead. */
+/* ==========================================================
+   Portfolio page stylesheet (self-contained).
+   Matches the homepage: cream background, Playfair Display
+   headings, Inter body text, sticky banner. Each <section>
+   is one task, shown as a full-width cream box.
+   ========================================================== */
 
-/* These are comments in CSS. Comments don't do anything except explain your working to make code easier to understand. */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500&display=swap');
 
+:root {
+    --bg: #fef7f4;
+    --box-bg: #f6efec;
+    --box-border: #d9cdc8;
+    --text: #111827;
+    --text-muted: #4b5563;
+    --border: #e5e7eb;
+    --accent: #2563eb;
+    --banner-bg: rgba(254, 247, 244, 0.75);
 
-body { /* We can style any HTML element by using its name - here we're styling the body */
-  /* We want text that uses a clean sans-serif font, is usually 16px big and close to black */
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  color: #333;
-  line-height: 1.6;
-  /* we want a white page, that's centered and not too wide */
-  background-color: #fff;
-  margin:0 auto;
-  max-width: 800px;
-  padding-top: 60px;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+
+    --page-max: 1280px;
+    --page-pad: 2rem;
+    --content-width: 60rem;
 }
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
 
-/* Headings */
+html {
+    scroll-padding-top: 4rem; /* keeps anchor links clear of the sticky banner */
+}
+
+body {
+    margin: 0;
+    padding: 0 0 4rem;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Banner (identical to the homepage) ---------- */
+
+.banner {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    background-color: var(--banner-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+}
+
+.banner nav {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: 0 var(--page-pad);
+    display: flex;
+    gap: 2rem;
+}
+
+.banner a {
+    position: relative;
+    display: inline-block;
+    padding: 1.1rem 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.banner a:hover {
+    color: var(--text);
+    text-decoration: none;
+}
+
+.banner a[aria-current="page"] {
+    color: var(--text);
+}
+
+.banner a[aria-current="page"]::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 2px;
+    background-color: var(--text);
+}
+
+/* ---------- Page column ----------
+   Everything directly inside <body> (except the banner and scripts)
+   sits in one centered column. */
+
+body > :not(.banner):not(script):not(style) {
+    width: min(var(--content-width), 100% - 2rem);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Space between the banner and whatever comes first */
+body > .banner + * {
+    margin-top: 2.5rem;
+}
+
+/* ---------- Headings ---------- */
+
 h1, h2, h3, h4, h5, h6 {
-  color: #333;
-  margin-top: 24px;
-  margin-bottom: 16px;
-  font-weight: 600;
+    color: var(--text);
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    line-height: 1.2;
 }
 
-/* We want the headings to be a little bigger than the paragraph text */
-.big { /* This is the class we created in the HTML file, you can use it to style any element */
-  font-size: 2.5em;
+h1,
+h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+}
+
+.big {
+    font-size: clamp(2.25rem, 5vw, 3.25rem);
+    letter-spacing: -0.01em;
 }
 
 h2 {
-  font-size: 1.75em;
+    font-size: 1.75rem;
 }
 
 .small {
-  font-size: 1.25em;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--text-muted);
 }
 
-/* Paragraph */
+/* ---------- Text ---------- */
+
 p {
-  margin-bottom: 1em;
-  font-weight: 300;
+    margin: 0 0 1em;
+    font-weight: 400;
+    color: var(--text-muted);
+    overflow-wrap: anywhere; /* long URLs wrap instead of overflowing the box */
 }
 
-section {
-  margin-bottom: 2.5em;  /* We want a little more space between sections */
+figcaption {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
 }
 
-/* Links */
-/* We want the links to be a little more visible  and a different color */
 a {
-  color: #065f46;
-  text-decoration: none;
+    color: var(--accent);
+    text-decoration: none;
 }
 
 a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }
-  
-/* Images */
+
+a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+/* ---------- Task boxes: one <section> per task, stacked full width ---------- */
+
+section {
+    background-color: var(--box-bg);
+    border: 1px solid var(--box-border);
+    border-radius: 8px;
+    padding: 2rem 2.25rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Last paragraph in a box shouldn't add extra space at the bottom */
+section > :last-child {
+    margin-bottom: 0;
+}
+
+/* The first heading in a box sits flush with the box padding */
+section .chart-description h2 {
+    margin-top: 0;
+}
+
+/* ---------- Charts and images ---------- */
+
+figure {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background-color: #fff;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow-x: auto; /* wide charts scroll inside their own panel */
+}
+
+/* Figures that contain a caption (e.g. the original FT chart) */
+figure > img {
+    display: block;
+}
+
 img {
-  max-width: 100%;
-  height: auto;
+    max-width: 100%;
+    height: auto;
+}
+
+section > img {
+    display: block;
+    margin: 1.5rem 0 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 799px) {
+    :root {
+        --page-pad: 1rem;
+    }
+
+    .banner nav {
+        gap: 1.5rem;
+    }
+
+    section {
+        padding: 1.25rem 1rem;
+    }
+
+    figure {
+        padding: 0.5rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
 }
