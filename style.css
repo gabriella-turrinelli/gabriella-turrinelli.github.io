@@ -1,0 +1,185 @@
+/* ==========================================================
+   Shared stylesheet for Home, Project, and Portfolio pages.
+   Fonts are loaded in each page's <head> (Playfair Display + Inter).
+   ========================================================== */
+
+:root {
+    --bg: #fef7f4;
+    --text: #111827;
+    --text-muted: #4b5563;
+    --border: #e5e7eb;
+    --accent: #2563eb;
+    --banner-bg: rgba(254, 247, 244, 0.75);
+
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+
+    --page-max: 1280px;
+    --page-pad: 2rem;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-padding-top: 4rem; /* keeps anchor links clear of the sticky banner */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Banner (sticky navigation) ---------- */
+
+.banner {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    background-color: var(--banner-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+}
+
+.banner nav {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: 0 var(--page-pad);
+    display: flex;
+    gap: 2rem;
+}
+
+.banner a {
+    position: relative;
+    display: inline-block;
+    padding: 1.1rem 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.banner a:hover {
+    color: var(--text);
+}
+
+/* Current page: dark text with an underline that sits on the banner's border */
+.banner a[aria-current="page"] {
+    color: var(--text);
+}
+
+.banner a[aria-current="page"]::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 2px;
+    background-color: var(--text);
+}
+
+/* ---------- Shared focus style ---------- */
+
+a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+/* ---------- Home page intro ---------- */
+
+.intro {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: 6rem 5rem 4rem;
+}
+
+.profile-photo {
+    display: block;
+    width: 8rem;
+    height: 8rem;
+    margin: 0 0 2rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--border);
+}
+
+.intro h1 {
+    margin: 0 0 1.25rem;
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--text);
+}
+
+.bio {
+    max-width: 42rem;
+    margin: 0 0 2rem;
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+}
+
+/* ---------- Contact links (pill buttons) ---------- */
+
+.links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.links a {
+    display: inline-block;
+    padding: 0.5rem 1.15rem;
+    border: 1px solid var(--text-muted);
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text);
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.links a:hover {
+    background-color: var(--text);
+    border-color: var(--text);
+    color: var(--bg);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 799px) {
+    :root {
+        --page-pad: 1rem;
+    }
+
+    .intro {
+        padding: 3.5rem 1rem 2.5rem;
+    }
+
+    .banner nav {
+        gap: 1.5rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
