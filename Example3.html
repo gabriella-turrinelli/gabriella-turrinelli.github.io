@@ -5,7 +5,7 @@
 
 <head>    
     
-    <link rel="stylesheet" type="text/css" href="Example3.css">
+    <link rel="stylesheet" type="text/css" href="portfolio.css">
     <title>My Portfolio</title> 
 
     <script src="https://cdn.jsdelivr.net/npm/vega@6.4.0"></script>
@@ -19,19 +19,14 @@
         }
         
     </style>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body> 
     <h1 class="big" style="margin-bottom: 0px;"> 
-        Gabriella Turrinelli
+        PP434 Portfolio
     </h1>
-    <p style="margin-top: 0px; color: darkblue">
-        Gabriella Turrinelli | <a href="https://www.linkedin.com/in/gabriella-turrinelli/">LinkedIn</a> | <a
-            href="https://www.github.com/gabriella-turrinelli">GitHub</a>
-    </p>
-    <h3 class="small"> 
-        This page acts as your portfolio of charts. You can use it as a good starting point to display your work but make sure to customise it to make it your own, or even start from scratch.  
-    </h3>
 
     <section>
         <div class="chart-description">
@@ -149,7 +144,7 @@
         <figure id="Location6"></figure> <!-- we give it an id so we can put a vega-lite graph here with VegaEmbed -->
         <p> <!-- This is a paragraph, it's the main way to display text on a web page -->
                 Milk and bread prices remain stable, while egg prices spiked in March 2025 before leveling off. This indicates persistent affordability issues despite Trump’s campaign promises.
-
+        </p>
     </section>
 
     <script>
@@ -178,10 +173,11 @@
         </div>
 
         <!-- This element will contain our vega-lite chart -->
-        <img src="https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/portfolio_graphs/ft_ai_graph.jpg"
-            alt="Financial Times line chart showing AI-generated articles overtaking human-written articles from 2020 to 2025"
-            style="max-width: 100%; height: auto;">
-        <figcaption>Above is the original chart from the Financial Times. Data Source: Graphite</figcaption>
+        <figure>
+            <img src="https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/portfolio_graphs/ft_ai_graph.jpg"
+                alt="Financial Times line chart showing AI-generated articles overtaking human-written articles from 2020 to 2025"
+                style="max-width: 100%; height: auto;">
+            <figcaption>Above is the original chart from the Financial Times. Data Source: Graphite</figcaption>
         </figure>
         <figure id="Location7"></figure> <!-- we give it an id so we can put a vega-lite graph here with VegaEmbed -->
         <p>
@@ -251,5 +247,13 @@
     </script>
 
 </body>
+
+<header class="banner">
+     <nav aria-label="Main">
+       <a href="index.html">Home</a>
+       <a href="project.html">Project</a>
+       <a href="portfolio.html" aria-current="page">Portfolio</a>
+     </nav>
+   </header>
     
 </html>
