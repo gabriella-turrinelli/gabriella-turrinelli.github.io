@@ -202,6 +202,36 @@
         <a class="button" href="https://gabriella-turrinelli.github.io/DevolutionDashboard">View the webpage</a>
     </section>
 
+    <section>
+        <div class="chart-description">
+            <h2> CC7: Mapping </h2>
+            <p> 
+                Below I have two maps that cover regions within the UK.
+            </p>
+        </div>
+
+        <figure id="Location11"></figure> 
+        <p>
+            The above coordinate map displays railway stations in Scotland by number of journeys, color coded with the availability of journey data.
+        </p>
+             
+        <figure id="Location12"></figure>
+        <p> 
+            The above choropleth map shows the average life satisfaction in Wales in 2022 by local authority district.
+        </p>
+    </section>
+
+    <script>
+
+        let figure_11_spec = "https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/portfolio_graphs/scotland_rail_map.json"; 
+        vegaEmbed('#Location11', figure_11_spec) 
+        
+        let figure_12_spec = "https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/portfolio_graphs/wales_satis_map.json"; 
+
+        vegaEmbed('#Location12', figure_12_spec) 
+
+    </script>
+
 </body>
     
 </html>

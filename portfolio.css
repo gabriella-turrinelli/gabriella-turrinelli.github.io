@@ -112,6 +112,13 @@ body > .banner + * {
     margin-top: 2.5rem;
 }
 
+/* Let the Vega tooltip size itself (it is appended directly to <body>) */
+body > #vg-tooltip-element {
+    width: auto;
+    max-width: 280px;
+    margin: 0;
+}
+
 /* ---------- Headings ---------- */
 
 h1, h2, h3, h4, h5, h6 {
