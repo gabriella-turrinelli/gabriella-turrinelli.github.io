@@ -8,7 +8,7 @@
     "subtitleColor": "grey",
     "subtitleFontSize": 11
   },
-  "width": 350,
+  "width": 400,
   "height": 450,
   "projection": {"type": "mercator"},
   "layer": [
@@ -26,7 +26,7 @@
       "transform": [{"filter": "datum.status == 'Reported'"}],
       "mark": {
         "type": "circle",
-        "opacity": 0.6,
+        "opacity": 0.4,
         "stroke": "white",
         "strokeWidth": 0.5
       },
@@ -37,7 +37,7 @@
           "field": "num_journeys",
           "type": "quantitative",
           "title": "Journeys",
-          "scale": {"type": "sqrt", "range": [15, 1500]}
+          "scale": {"type": "sqrt", "range": [8, 700]}
         },
         "color": {
           "field": "status",
