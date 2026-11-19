@@ -1,0 +1,59 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Map of life satisfaction in wales",
+  "title": {
+    "text": "Life Satisfcation in Wales, 2022",
+    "anchor": "start",
+    "subtitle": [
+      "Average rating of life satisfaction (0 = 'not at all satisfied',",
+      "10 = 'completely satisfied') for people aged 16 and over. Source: ONS"
+    ],
+    "subtitleColor": "grey",
+    "subtitleFontSize": 11
+  },
+  "width": 320,
+  "height": 380,
+  "data": {
+    "url": "https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/portfolio_data/map_data/LAD_WLS_2026_05.json",
+    "format": {"type": "topojson", "feature": "geog"}
+  },
+  "transform": [
+    {
+      "lookup": "properties.id",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/portfolio_data/map_data/wales_life_satisfaction.csv"
+        },
+        "key": "areacd",
+        "fields": ["value"]
+      }
+    }
+  ],
+  "projection": {"type": "mercator"},
+  "mark": {
+    "type": "geoshape",
+    "stroke": "white",
+    "strokeWidth": 0.8,
+    "invalid": "show"
+  },
+  "encoding": {
+    "color": {
+      "condition": {"test": "!isValid(datum.value)", "value": "#e3e3e3"},
+      "field": "value",
+      "type": "quantitative",
+      "title": "Life satisfaction",
+      "scale": {"scheme": "purples"},
+      "legend": {"format": ".1f"}
+    },
+    "tooltip": [
+      {"field": "properties.name", "title": "Local authority"},
+      {
+        "field": "value",
+        "type": "quantitative",
+        "format": ".2f",
+        "title": "Life satisfaction"
+      }
+    ]
+  },
+  "config": {}
+}
