@@ -1,0 +1,101 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "A point map displaying the number of journeys by rail station in Scotland",
+  "title": {
+    "text": "Scotland Railway Stations",
+    "anchor": "start",
+    "subtitle": "By number of journeys to or from main origin or destination station (Source: NaPTAN, ORR)",
+    "subtitleColor": "grey",
+    "subtitleFontSize": 11
+  },
+  "width": 350,
+  "height": 450,
+  "projection": {"type": "mercator"},
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/portfolio_data/map_data/LAD_SCT_2026_05.json",
+        "format": {"type": "topojson", "feature": "geog"}
+      },
+      "mark": {"type": "geoshape", "fill": "#e3e3e3", "stroke": "white"}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/portfolio_data/map_data/scotland_rail_usage.csv"
+      },
+      "transform": [{"filter": "datum.status == 'Reported'"}],
+      "mark": {
+        "type": "circle",
+        "opacity": 0.6,
+        "stroke": "white",
+        "strokeWidth": 0.5
+      },
+      "encoding": {
+        "longitude": {"field": "Longitude", "type": "quantitative"},
+        "latitude": {"field": "Latitude", "type": "quantitative"},
+        "size": {
+          "field": "num_journeys",
+          "type": "quantitative",
+          "title": "Journeys",
+          "scale": {"type": "sqrt", "range": [15, 1500]}
+        },
+        "color": {
+          "field": "status",
+          "type": "nominal",
+          "title": "Data Availability",
+          "scale": {
+            "domain": ["Reported", "Unknown"],
+            "range": ["#1f77b4", "#b5524a"]
+          }
+        },
+        "order": {
+          "field": "num_journeys",
+          "type": "quantitative",
+          "sort": "descending"
+        },
+        "tooltip": [
+          {"field": "name", "title": "Station"},
+          {"field": "status", "title": "Data Availability"},
+          {
+            "field": "num_journeys",
+            "type": "quantitative",
+            "format": ",.0f",
+            "title": "Number of Journeys"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/portfolio_data/map_data/scotland_rail_usage.csv"
+      },
+      "transform": [{"filter": "datum.status == 'Unknown'"}],
+      "mark": {
+        "type": "circle",
+        "size": 70,
+        "fillOpacity": 0.6,
+        "stroke": "gray",
+        "strokeWidth": 1,
+        "strokeOpacity": 0.9
+      },
+      "encoding": {
+        "longitude": {"field": "Longitude", "type": "quantitative"},
+        "latitude": {"field": "Latitude", "type": "quantitative"},
+        "color": {
+          "field": "status",
+          "type": "nominal",
+          "title": "Data Availability",
+          "scale": {
+            "domain": ["Reported", "Unknown"],
+            "range": ["#1f77b4", "#b5524a"]
+          }
+        },
+        "tooltip": [
+          {"field": "name", "title": "Station"},
+          {"field": "status", "title": "Data Availability"}
+        ]
+      }
+    }
+  ],
+  "config": {}
+}
