@@ -232,6 +232,30 @@
 
     </script>
 
+    <section>
+        <div class="chart-description">
+            <h2> CC8: Big Data </h2>
+            <p> 
+                First, I merged the prices and item data, filtered to potatoes, calculated average monthly price across all stores and regions, and graphed the results.
+                Next, I used pint price data and kept only observations of Guinness and cider. I then calculated each type’s average yearly price and graphed it.
+            </p>
+        </div>
+
+        <figure id="Location13"></figure>       
+        <figure id="Location14"></figure>
+    </section>
+
+    <script>
+
+        let figure_13_spec = "https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/portfolio_graphs/potato_prices.json"; 
+        vegaEmbed('#Location13', figure_13_spec) 
+        
+        let figure_14_spec = "https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/portfolio_graphs/pint_prices_guinness_cider.json"; 
+
+        vegaEmbed('#Location14', figure_14_spec) 
+
+    </script>
+
 </body>
     
 </html>
