@@ -33,6 +33,7 @@
 
 html {
     scroll-padding-top: 4rem; /* keeps anchor links clear of the sticky banner */
+    scroll-behavior: smooth;
 }
 
 body {
@@ -101,7 +102,7 @@ body {
    Everything directly inside <body> (except the banner and scripts)
    sits in one centered column. */
 
-body > :not(.banner):not(script):not(style) {
+body > :not(.banner):not(.side-nav):not(script):not(style) {
     width: min(var(--content-width), 100% - 2rem);
     margin-left: auto;
     margin-right: auto;
@@ -117,6 +118,33 @@ body > #vg-tooltip-element {
     width: auto;
     max-width: 280px;
     margin: 0;
+}
+
+/* ---------- Side bar ---------- */
+.side-nav {
+    position: fixed;
+    top: 5rem;
+    left: 1.5rem;
+    width: 11rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    border-left: 1px solid var(--border);
+    font-size: 0.875rem;
+}
+
+.side-nav a {
+    margin-left: -1px;
+    padding: 0.35rem 0.75rem;
+    border-left: 2px solid transparent;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+.side-nav a:hover {
+    color: var(--text);
+    border-left-color: var(--text);
+    text-decoration: none;
 }
 
 /* ---------- Headings ---------- */
@@ -273,5 +301,21 @@ section > img {
 @media (prefers-reduced-motion: reduce) {
     * {
         transition: none !important;
+    }
+}
+
+/* Medium screens: nav stays on the left, content shifts right and fills the rest */
+@media (min-width: 900px) and (max-width: 1449px) {
+    body > :not(.banner):not(.side-nav):not(script):not(style) {
+        width: auto;
+        margin-left: 14rem;
+        margin-right: 2rem;
+    }
+}
+
+/* Small screens: no room for a sidebar */
+@media (max-width: 899px) {
+    .side-nav {
+        display: none;
     }
 }
