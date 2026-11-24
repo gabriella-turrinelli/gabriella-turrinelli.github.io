@@ -42,7 +42,11 @@
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/project_data/youth_unemp_by_region.csv"
+        "url": "https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/project_data/youth_unemp_by_region.csv",
+        "format": {
+          "type": "csv",
+          "parse": {"total": "number", "year": "number"}
+        }
       },
       "transform": [
         {"filter": "datum.age_range == '20 to 29'"},

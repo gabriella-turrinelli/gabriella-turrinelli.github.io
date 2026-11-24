@@ -1,0 +1,115 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Unemployment over Time by Age Group, with region selection.",
+  "title": {
+    "text": "Unemployment over Time by Age Group",
+    "anchor": "start",
+    "subtitle": "Source: Eurostat",
+    "fontSize": 22,
+    "subtitleFontSize": 14,
+    "color": "#333",
+    "subtitleColor": "#666"
+  },
+  "params": [
+    {
+      "name": "SelectParam",
+      "value": "National",
+      "bind": {
+        "input": "select",
+        "options": [
+          "National",
+          "Piemonte",
+          "Valle d’Aosta/Vallée d’Aoste",
+          "Liguria",
+          "Lombardia",
+          "Abruzzo",
+          "Molise",
+          "Campania",
+          "Puglia",
+          "Basilicata",
+          "Calabria",
+          "Sicilia",
+          "Sardegna",
+          "Provincia Autonoma di Bolzano/Bozen",
+          "Provincia Autonoma di Trento",
+          "Veneto",
+          "Friuli-Venezia Giulia",
+          "Emilia-Romagna",
+          "Toscana",
+          "Umbria",
+          "Marche",
+          "Lazio"
+        ],
+        "name": "Geography: "
+      }
+    }
+  ],
+  "width": 600,
+  "height": 400,
+  "background": "#faf8f3",
+  "config": {
+    "font": "Georgia",
+    "view": {"stroke": null},
+    "axis": {
+      "gridColor": "#e6e2d8",
+      "labelColor": "#555",
+      "titleColor": "#333",
+      "titleFontWeight": "normal"
+    },
+    "legend": {"orient": "top", "labelColor": "#555", "titleColor": "#333"}
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/project_data/unemp_by_age_region_time.csv",
+    "format": {"type": "csv", "parse": {"year": "date:'%Y'", "total": "number"}}
+  },
+  "transform": [{"filter": "datum.region_name === SelectParam"}],
+  "mark": {
+    "type": "line",
+    "point": {"size": 40},
+    "tooltip": true,
+    "invalid": "break-paths-filter-domains"
+  },
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "temporal",
+      "title": null,
+      "axis": {"format": "%Y", "tickCount": 13}
+    },
+    "y": {
+      "field": "total",
+      "type": "quantitative",
+      "title": "Unemployment rate (%)",
+      "scale": {"domain": [0, 70]}
+    },
+    "color": {
+      "field": "age_range",
+      "type": "nominal",
+      "title": "Age range",
+      "scale": {
+        "domain": ["15 to 24", "25 to 34", "35 to 44", "45 to 54", "55 to 64"],
+        "range": ["#c0392b", "#2c6e91", "#5b9bb8", "#8fbcd0", "#b9d3df"]
+      }
+    },
+    "strokeWidth": {
+      "condition": {"test": "datum.age_range === '15 to 24'", "value": 3.5},
+      "value": 2
+    },
+    "tooltip": [
+      {"field": "region_name", "type": "nominal", "title": "Region"},
+      {"field": "age_range", "type": "nominal", "title": "Age range"},
+      {
+        "field": "year",
+        "type": "temporal",
+        "timeUnit": "year",
+        "title": "Year"
+      },
+      {
+        "field": "total",
+        "type": "quantitative",
+        "title": "Unemployment rate (%)",
+        "format": ".1f"
+      }
+    ]
+  }
+}
