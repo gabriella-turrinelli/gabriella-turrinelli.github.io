@@ -1,0 +1,100 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Youth Unemployment in Italy (Ages 20-29)",
+    "anchor": "start",
+    "subtitle": "Source: Eurostat",
+    "fontSize": 22,
+    "subtitleFontSize": 14,
+    "color": "#333",
+    "subtitleColor": "#666"
+  },
+  "width": 600,
+  "height": 600,
+  "background": "#faf8f3",
+  "config": {"font": "Georgia", "view": {"stroke": null}},
+  "params": [
+    {
+      "name": "yearSlider",
+      "value": 2025,
+      "bind": {
+        "input": "range",
+        "min": 2016,
+        "max": 2025,
+        "step": 1,
+        "name": "Year: "
+      }
+    }
+  ],
+  "projection": {"type": "mercator", "scale": 2000, "center": [12.5, 42]},
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/project_data/italy_nuts2.geojson",
+        "format": {"type": "json", "property": "features"}
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#d9d5cc",
+        "stroke": "white",
+        "strokeWidth": 0.5
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/project_data/youth_unemp_by_region.csv"
+      },
+      "transform": [
+        {"filter": "datum.age_range == '20 to 29'"},
+        {"filter": "datum.year == yearSlider"},
+        {"filter": "isValid(datum.total)"},
+        {
+          "lookup": "region",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/gabriella-turrinelli/gabriella-turrinelli.github.io/refs/heads/main/project_data/italy_nuts2.geojson",
+              "format": {"type": "json", "property": "features"}
+            },
+            "key": "properties.NAME_LATN",
+            "fields": ["type", "properties", "geometry"]
+          }
+        }
+      ],
+      "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 0.5},
+      "encoding": {
+        "color": {
+          "field": "total",
+          "type": "quantitative",
+          "scale": {"scheme": "orangered", "domain": [0, 50]},
+          "title": "Unemployment rate (%)",
+          "legend": {
+            "labelColor": "#333",
+            "titleColor": "#333",
+            "orient": "top-right",
+            "direction": "vertical",
+            "gradientLength": 200,
+            "gradientThickness": 15,
+            "format": ".0f",
+            "titleFontSize": 12,
+            "labelFontSize": 11
+          }
+        },
+        "tooltip": [
+          {"field": "region", "type": "nominal", "title": "Region"},
+          {
+            "field": "total",
+            "type": "quantitative",
+            "title": "Unemployment rate (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "year",
+            "type": "quantitative",
+            "title": "Year",
+            "format": "d"
+          }
+        ]
+      }
+    }
+  ]
+}
