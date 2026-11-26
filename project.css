@@ -1,29 +1,412 @@
-/* Richard Davies */
-/* Data Science */
+/* ==========================================================
+   Project page stylesheet (self-contained).
+   Adapted from portfolio.css. Same cream background, Playfair
+   Display headings, Inter body text and sticky banner.
 
-/* This is a comment in CSS */
+   Layout: one centered column, no sidebar.
+   Text flows openly on the cream background; only charts sit
+   in boxes (a white figure panel, optionally wrapped in a cream
+   <section class="chart-box">).
+   ========================================================== */
 
-/* This is a 
-multi line comment */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap');
 
-/* CSS files can be used to access e.g. fonts */
-@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@900&display=swap');
+:root {
+    --bg: #fef7f4;
+    --box-bg: #f6efec;
+    --box-border: #d9cdc8;
+    --text: #111827;
+    --text-muted: #4b5563;
+    --border: #e5e7eb;
+    --accent: #2563eb;
+    --banner-bg: rgba(254, 247, 244, 0.75);
+    --code-bg: #efe7e3;
 
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-/* Format my paragraph */
-p {
-	font-size: 18px;
-	margin: 5px 5px;
-	line-height: 22.4px;
-	color: #323232;
+    --page-max: 1280px;
+    --page-pad: 2rem;
+    --content-width: 60rem;
 }
 
-/* Format my heading */
-h1 {
-	font-family: "Catamaran";
-	font-variant: small-caps;
-	font-size: 60px;
-	color: #320064;
-	font-weight: 900;
-	margin: 0px 0px 30px 0px;
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-padding-top: 4rem; /* keeps anchor links clear of the sticky banner */
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0 0 4rem;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Banner (identical to the homepage) ---------- */
+
+.banner {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    background-color: var(--banner-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+}
+
+.banner nav {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: 0 var(--page-pad);
+    display: flex;
+    gap: 2rem;
+}
+
+.banner a {
+    position: relative;
+    display: inline-block;
+    padding: 1.1rem 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.banner a:hover {
+    color: var(--text);
+    text-decoration: none;
+}
+
+.banner a[aria-current="page"] {
+    color: var(--text);
+}
+
+.banner a[aria-current="page"]::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 2px;
+    background-color: var(--text);
+}
+
+/* ---------- Page column ----------
+   Everything directly inside <body> (except the banner and scripts)
+   sits in one centered column. */
+
+body > :not(.banner):not(script):not(style) {
+    width: min(var(--content-width), 100% - 2rem);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Space between the banner and whatever comes first */
+body > .banner + * {
+    margin-top: 2.5rem;
+}
+
+/* Let the Vega tooltip size itself (it is appended directly to <body>) */
+body > #vg-tooltip-element {
+    width: auto;
+    max-width: 280px;
+    margin: 0;
+}
+
+/* ---------- Headings ---------- */
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+h1,
+h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+}
+
+.big {
+    font-size: clamp(2.25rem, 5vw, 3.25rem);
+    letter-spacing: -0.01em;
+}
+
+h2 {
+    font-size: 1.75rem;
+}
+
+h3 {
+    font-size: 1.25rem;
+}
+
+.small {
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--text-muted);
+}
+
+/* First heading in the page or in a box sits flush with the top */
+body > .banner + h1,
+.chart-box > :first-child {
+    margin-top: 0;
+}
+
+/* ---------- Text ---------- */
+
+p {
+    margin: 0 0 1em;
+    font-weight: 400;
+    color: var(--text-muted);
+    overflow-wrap: anywhere; /* long URLs wrap instead of overflowing */
+}
+
+strong {
+    color: var(--text);
+    font-weight: 600;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+/* ---------- Sections ----------
+   Plain <section>s are open: no box, just vertical rhythm.
+   Only .chart-box gets the cream box. */
+
+section {
+    margin-bottom: 2.5rem;
+}
+
+section > :last-child {
+    margin-bottom: 0;
+}
+
+.chart-box {
+    background-color: var(--box-bg);
+    border: 1px solid var(--box-border);
+    border-radius: 8px;
+    padding: 2rem 2.25rem;
+}
+
+/* ---------- Lists ---------- */
+
+ul,
+ol {
+    margin: 0 0 1em;
+    padding-left: 1.5rem;
+    color: var(--text-muted);
+}
+
+li {
+    margin-bottom: 0.4em;
+}
+
+li::marker {
+    color: var(--text-muted);
+}
+
+/* ---------- Blockquotes and callouts ---------- */
+
+blockquote {
+    margin: 1.5rem 0;
+    padding: 0.25rem 0 0.25rem 1.25rem;
+    border-left: 3px solid var(--box-border);
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+blockquote > :last-child {
+    margin-bottom: 0;
+}
+
+.callout {
+    margin: 1.5rem 0;
+    padding: 1rem 1.25rem;
+    background-color: var(--box-bg);
+    border-left: 3px solid var(--text);
+    border-radius: 0 6px 6px 0;
+}
+
+.callout > :last-child {
+    margin-bottom: 0;
+}
+
+/* ---------- Code ---------- */
+
+code {
+    padding: 0.1em 0.35em;
+    background-color: var(--code-bg);
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+}
+
+pre {
+    margin: 1.5rem 0;
+    padding: 1rem 1.25rem;
+    background-color: var(--code-bg);
+    border: 1px solid var(--box-border);
+    border-radius: 6px;
+    overflow-x: auto;
+    line-height: 1.5;
+}
+
+pre code {
+    padding: 0;
+    background: none;
+    font-size: 0.875rem;
+}
+
+/* ---------- Tables ---------- */
+
+.table-wrap {
+    margin: 1.5rem 0;
+    overflow-x: auto; /* wide tables scroll inside their own wrapper */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.925rem;
+}
+
+th,
+td {
+    padding: 0.6rem 0.9rem;
+    border-bottom: 1px solid var(--box-border);
+    text-align: left;
+}
+
+th {
+    color: var(--text);
+    font-weight: 600;
+}
+
+td {
+    color: var(--text-muted);
+}
+
+/* ---------- Charts and images ---------- */
+
+figure {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background-color: #fff;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow-x: auto; /* wide charts scroll inside their own panel */
+}
+
+figure > img {
+    display: block;
+}
+
+figcaption {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+}
+
+/* Last figure in a chart box doesn't add extra space at the bottom */
+.chart-box > figure:last-child {
+    margin-bottom: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Standalone images (outside a figure) get a light frame */
+section > img {
+    display: block;
+    margin: 1.5rem 0 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+}
+
+hr {
+    margin: 2.5rem 0;
+    border: 0;
+    border-top: 1px solid var(--box-border);
+}
+
+/* ---------- Buttons ---------- */
+
+.button {
+    display: inline-block;
+    padding: 0.5rem 1.15rem;
+    border: 1px solid var(--text-muted);
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text);
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.button:hover {
+    background-color: var(--text);
+    border-color: var(--text);
+    color: var(--bg);
+    text-decoration: none;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 799px) {
+    :root {
+        --page-pad: 1rem;
+    }
+
+    .banner nav {
+        gap: 1.5rem;
+    }
+
+    .chart-box {
+        padding: 1.25rem 1rem;
+    }
+
+    figure {
+        padding: 0.5rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
 }
